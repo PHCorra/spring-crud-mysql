@@ -1,0 +1,25 @@
+name: test Pipeline
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker Image
+        run: docker-compose build
+
+      - name: Start containers
+        run: |
+          docker-compose up -d
+          sleep 10
+          docker-compose ps
+
+      - name: Stop containers
+        run: |
+          docker-compose stop
+          docker-compose rm -f
