@@ -37,6 +37,9 @@ jobs:
        - name: Build with Maven
          run: mvn package -DskipTests
 
+       - name: Run Application
+         run: java -jar target/crud-users-mysql-0.0.1.jar
+
 
        - name: Run curl to analyze endpoints
          run: curl http://localhost:8080/api/users
